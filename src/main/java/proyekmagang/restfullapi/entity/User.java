@@ -1,4 +1,4 @@
-package proyekmagang.proyekmagangrestfull.entity;
+package proyekmagang.restfullapi.entity;
 
 import jakarta.persistence.*;
 

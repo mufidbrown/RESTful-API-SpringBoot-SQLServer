@@ -19,7 +19,7 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
-    
+
     public User createUser(User user) {
         userRepository.save(user);
         return user;

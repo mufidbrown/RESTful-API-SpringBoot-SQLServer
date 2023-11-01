@@ -24,5 +24,10 @@ public class UserService {
         userRepository.save(user);
         return user;
     }
+
+    public User updateUser(Long id, User user) {
+            userRepository.save(user);
+            return user;
+    }
 }
 

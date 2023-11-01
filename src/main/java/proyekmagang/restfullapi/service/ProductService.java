@@ -28,5 +28,7 @@ public class ProductService {
 
 
     public Product updateProduct(Long id, Product product) {
+            productRepository.save(product);
+            return product;
     }
 }

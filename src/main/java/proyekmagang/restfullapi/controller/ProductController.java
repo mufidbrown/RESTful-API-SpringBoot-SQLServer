@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import proyekmagang.restfullapi.api.BaseResponse;
 import proyekmagang.restfullapi.entity.Product;
 import proyekmagang.restfullapi.service.ProductService;
 
@@ -54,4 +55,10 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/product/v1")
+    public ResponseEntity<BaseResponse<List<Product>>> getAllProducts2() {
+        List<Product> products = productService.getAllProducts();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Produk", products));
+
+    }
 }

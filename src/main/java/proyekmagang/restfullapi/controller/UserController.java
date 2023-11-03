@@ -63,7 +63,15 @@ public class UserController {
 
     }
 
-
+    @GetMapping("/user/v1/{id}")
+    public ResponseEntity<BaseResponse<User>> getUserById2(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        if (user != null) {
+            return ResponseEntity.ok(BaseResponse.ok("User Ditemukan", user));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("User Tidak Ditemukan"));
+        }
+    }
 
 
 }

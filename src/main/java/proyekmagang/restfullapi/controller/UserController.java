@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import proyekmagang.restfullapi.api.BaseResponse;
 import proyekmagang.restfullapi.entity.User;
 import proyekmagang.restfullapi.service.UserService;
 
@@ -53,6 +54,13 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/user/v1")
+    public ResponseEntity<BaseResponse<List<User>>> getAllUsers2() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua User", users));
+
     }
 
 

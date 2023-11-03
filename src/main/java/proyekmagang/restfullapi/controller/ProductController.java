@@ -59,6 +59,15 @@ public class ProductController {
     public ResponseEntity<BaseResponse<List<Product>>> getAllProducts2() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Produk", products));
+    }
 
+    @GetMapping("/product/v1/{id}")
+    public ResponseEntity<BaseResponse<Product>> getProductById2(@PathVariable("id") Long id) {
+        Product product = productService.getProductById(id);
+        if (product != null) {
+            return ResponseEntity.ok(BaseResponse.ok("Product Ditemukan", product));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("Product Tidak Ditemukan"));
+        }
     }
 }

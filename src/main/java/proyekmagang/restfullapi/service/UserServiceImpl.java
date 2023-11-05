@@ -26,4 +26,17 @@ public class UserServiceImpl implements ServiceUser{
                 .build();
         return BaseResponse.ok(userResponse);
     }
+
+    @Override
+    public BaseResponse<?> testParameterUser(Integer idUser) {
+        Query query = entityManager.createNativeQuery("select username, password from users u WHERE id = ?1");
+        query.setParameter(1, idUser);
+        List<?> list = Arrays.asList((Object[]) query.getSingleResult());
+        UserResponse userResponse = UserResponse.builder()
+                .username(list.get(0).toString())
+                .password(list.get(1).toString())
+                .build();
+        return BaseResponse.ok(userResponse);
+
+    }
 }

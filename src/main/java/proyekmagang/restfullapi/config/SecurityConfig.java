@@ -1,9 +1,10 @@
-package proyekmagang.restfullapi.security;
+package proyekmagang.restfullapi.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -25,6 +26,7 @@ public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final DaoAuthenticationProvider daoAuthenticationProvider;
 
+
     public SecurityConfig(JwtTokenFilter jwtAuthenticationFilter,
                           UserDetailsService userDetailsService,
                           DaoAuthenticationProvider daoAuthenticationProvider) {
@@ -33,8 +35,17 @@ public class SecurityConfig {
         this.daoAuthenticationProvider = daoAuthenticationProvider;
     }
 
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
@@ -52,8 +63,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.headers().frameOptions().disable();
 
         httpSecurity.cors().and().csrf().disable();
@@ -80,4 +90,10 @@ public class SecurityConfig {
         //@formatter:on
         return httpSecurity.build();
     }
+
 }
+
+
+
+
+

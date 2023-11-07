@@ -1,4 +1,4 @@
-package proyekmagang.restfullapi.service;
+package proyekmagang.restfullapi.service.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -6,13 +6,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import proyekmagang.restfullapi.api.BaseResponse;
 import proyekmagang.restfullapi.model.UserResponse;
+import proyekmagang.restfullapi.service.ServiceUser;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements ServiceUser{
+public class UserServiceImpl implements ServiceUser {
 
     private final EntityManager entityManager;
 

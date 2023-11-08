@@ -34,11 +34,17 @@ public class UserController {
         }
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody User user) {
+        userService.registerUser(user);
+        return ResponseEntity.ok("Registration successful");
     }
+
+//    @PostMapping("/add")
+//    public ResponseEntity<User> createUser(@RequestBody User user) {
+//        User createdUser = userService.createUser(user);
+//        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+//    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {

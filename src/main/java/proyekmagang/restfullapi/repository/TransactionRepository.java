@@ -1,4 +1,4 @@
 package proyekmagang.restfullapi.repository;
 
-public class TransactionRepository {
+public interface TransactionRepository {
 }

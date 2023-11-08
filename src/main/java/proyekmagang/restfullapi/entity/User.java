@@ -1,9 +1,9 @@
 package proyekmagang.restfullapi.entity;
 
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
+
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -14,7 +14,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
+
     private String password;
+
 
     public Long getId() {
         return id;

@@ -1,40 +1,25 @@
 package proyekmagang.restfullapi.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyekmagang.restfullapi.entity.User;
 import proyekmagang.restfullapi.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public List<User> allUsers() {
+        List<User> users = new ArrayList<>();
+
+        userRepository.findAll().forEach(users::add);
+
+        return users;
     }
-
-    public User createUser(User user) {
-        userRepository.save(user);
-        return user;
-    }
-
-    public User updateUser(Long id, User user) {
-            userRepository.save(user);
-            return user;
-    }
-
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
-
-
-
 }
-

@@ -1,4 +1,4 @@
 package proyekmagang.restfullapi.config;
 
-public class JwtAuthenticationFilter {
+public class ApplicationConfiguration {
 }

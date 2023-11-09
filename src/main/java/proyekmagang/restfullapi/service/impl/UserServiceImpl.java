@@ -1,7 +1,5 @@
 package proyekmagang.restfullapi.service.impl;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,20 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import proyekmagang.restfullapi.api.BaseResponse;
 import proyekmagang.restfullapi.entity.User;
-import proyekmagang.restfullapi.exception.DuplicateUserNameException;
-import proyekmagang.restfullapi.exception.ResourceNotFoundException;
-import proyekmagang.restfullapi.model.UserResponse;
 import proyekmagang.restfullapi.repository.UserRepository;
-import proyekmagang.restfullapi.service.ServiceUser;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Service(value = "userService")
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserDetailsService, ServiceUser {
+public class UserServiceImpl implements UserDetailsService, UserService {
 
 //    private final EntityManager entityManager;
 //

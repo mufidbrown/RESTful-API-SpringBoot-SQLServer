@@ -1,8 +1,11 @@
 package proyekmagang.restfullapi.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import proyekmagang.restfullapi.dto.LoginUserDto;
+import proyekmagang.restfullapi.dto.RegisterUserDto;
 import proyekmagang.restfullapi.entity.User;
 import proyekmagang.restfullapi.repository.UserRepository;
 

@@ -1,5 +1,6 @@
 package proyekmagang.restfullapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 
@@ -8,29 +9,34 @@ import jakarta.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-//    private String username;
-    private String email;
+
+    @Column(name="username", unique=true, length = 50)
+    private String userName;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name="password", length = 255)
     private String password;
-    private String firstName;
-    private String lastName;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
+    @Column(name="roles", length = 20)
+    private String roles;
+
+
+    public Long getId() {
+        return id;
     }
 
-    public User() {
-
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -41,21 +47,11 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
 }

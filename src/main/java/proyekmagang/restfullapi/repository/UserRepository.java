@@ -1,14 +1,8 @@
 package proyekmagang.restfullapi.repository;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import proyekmagang.restfullapi.entity.User;
 
-@Repository
-public class UserRepository {
-    public User findUserByEmail(String email){
-        User user = new User(email,"123456");
-        user.setFirstName("FirstName");
-        user.setLastName("LastName");
-        return user;
-    }
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUserName(String username);
 }

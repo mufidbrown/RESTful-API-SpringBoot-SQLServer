@@ -4,9 +4,9 @@ import proyekmagang.restfullapi.api.BaseResponse;
 import proyekmagang.restfullapi.entity.User;
 
 public interface ServiceUser {
-    BaseResponse<?> testuser();
-
-    BaseResponse<?> testParameterUser(Integer idUser);
+//    BaseResponse<?> testuser();
+//
+//    BaseResponse<?> testParameterUser(Integer idUser);
 
     //JWT
     User findOne(String username);

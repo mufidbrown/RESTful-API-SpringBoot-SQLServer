@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import proyekmagang.restfullapi.constant.JWTConstants;
 import proyekmagang.restfullapi.entity.User;
 
 import java.io.Serializable;

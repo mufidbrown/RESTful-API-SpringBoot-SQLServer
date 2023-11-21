@@ -1,39 +1,60 @@
 package proyekmagang.restfullapi.entity;
 
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "products")
 public class Product {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        @Column(nullable = false)
+        private Integer id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private double price;
+        @Column(nullable = false)
+        private String productName;
 
-    public Long getId() {
-        return id;
+        @Column(nullable = false)
+        private double price;
+
+
+        // constructors, getters, setters, and other methods
+
+        public Integer getId() {
+            return id;
+        }
+
+        public Product setId(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public Product setProductName(String productName) {
+            this.productName = productName;
+            return this;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public Product setPrice(double price) {
+            this.price = price;
+            return this;
+        }
+
+        @Override
+        public String toString() {
+            return "Product{" +
+                    "id=" + id +
+                    ", productName='" + productName + '\'' +
+                    ", price=" + price +
+                    '}';
+        }
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-}

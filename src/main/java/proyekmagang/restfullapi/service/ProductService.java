@@ -21,18 +21,19 @@ public class ProductService {
     }
 
 
-    public Product createProduct(Product product) {
-        productRepository.save(product);
-        return product;
-    }
-
 
     public Product updateProduct(Long id, Product product) {
-            productRepository.save(product);
-            return product;
+        productRepository.save(product);
+        return product;
     }
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+
+    public Product createProduct(Product product) {
+        productRepository.save(product);
+        return product;
+    }
+
 }

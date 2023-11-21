@@ -33,11 +33,13 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/add")
+
+    @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product createdProduct = productService.createProduct(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
@@ -55,11 +57,17 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+
+
+    //-----------------------BaseResponse------------------------
+
     @GetMapping("/product/v1")
     public ResponseEntity<BaseResponse<List<Product>>> getAllProducts2() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Produk", products));
+
     }
+
 
     @GetMapping("/product/v1/{id}")
     public ResponseEntity<BaseResponse<Product>> getProductById2(@PathVariable("id") Long id) {

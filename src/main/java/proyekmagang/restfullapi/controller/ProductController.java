@@ -1,81 +1,53 @@
-package proyekmagang.restfullapi.controller;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import proyekmagang.restfullapi.api.BaseResponse;
-import proyekmagang.restfullapi.entity.Product;
-import proyekmagang.restfullapi.service.ProductService;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/products")
-public class ProductController {
-
-    @Autowired
-    private ProductService productService;
-
-    @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        return new ResponseEntity<>(products, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Product product = productService.getProductById(id);
-        if (product != null) {
-            return new ResponseEntity<>(product, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-
-    @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product createdProduct = productService.createProduct(product);
-        return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
-    }
-
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(id, product);
-        if (updatedProduct != null) {
-            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-
-
-    //-----------------------BaseResponse------------------------
-
-    @GetMapping("/product/v1")
-    public ResponseEntity<BaseResponse<List<Product>>> getAllProducts2() {
-        List<Product> products = productService.getAllProducts();
-        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Produk", products));
-
-    }
-
-
-    @GetMapping("/product/v1/{id}")
-    public ResponseEntity<BaseResponse<Product>> getProductById2(@PathVariable("id") Long id) {
-        Product product = productService.getProductById(id);
-        if (product != null) {
-            return ResponseEntity.ok(BaseResponse.ok("Product Ditemukan", product));
-        } else {
-            return ResponseEntity.ok(BaseResponse.error("Product Tidak Ditemukan"));
-        }
-    }
-}
+//package proyekmagang.restfullapi.controller;
+//
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.*;
+//import proyekmagang.restfullapi.entity.Product;
+//import proyekmagang.restfullapi.service.ProductService;
+//
+//import java.util.List;
+//
+//@RestController
+//@RequestMapping("/products")
+//public class ProductController {
+//    private final ProductService productService;
+//
+//    public ProductController(ProductService productService) {
+//        this.productService = productService;
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity<List<Product>> getAllProducts() {
+//        List<Product> products = productService.allProducts();
+//        return ResponseEntity.ok(products);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
+//        Product product = productService.getProductById(id);
+//        if (product != null) {
+//            return ResponseEntity.ok(product);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+//
+//    @PostMapping("/add")
+//    public ResponseEntity<Void> addProduct(@RequestBody Product product) {
+//        productService.addProduct(product);
+//        return ResponseEntity.status(HttpStatus.CREATED).build();
+//    }
+//
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<Void> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+//        productService.updateProduct(id, product);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
+//        productService.deleteProduct(id);
+//        return ResponseEntity.ok().build();
+//    }
+//}

@@ -77,6 +77,26 @@
 <!--            <artifactId>spring-security-config</artifactId>-->
 <!--            <version>5.7.4</version>-->
 <!--        </dependency>-->
+
+
+<!--		tambahan 07/12/2023-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+<!--		end tambahan-->
     </dependencies>
 
 	<build>

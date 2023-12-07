@@ -3,6 +3,7 @@ package proyekmagang.restfullapi.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -24,5 +25,6 @@ public class Transaction {
     @JoinColumn(name = "id_products")
     private Product product;
 
+    @CreationTimestamp
     private LocalDateTime transactionDate;
 }

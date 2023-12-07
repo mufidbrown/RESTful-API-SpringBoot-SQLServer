@@ -1,4 +1,4 @@
-package proyekmagang.restfullapi.config;
+package proyekmagang.restfullapi.bootstrap;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

@@ -1,8 +1,10 @@
 package proyekmagang.restfullapi.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import proyekmagang.restfullapi.entity.Product;
+import org.springframework.web.multipart.MultipartFile;
 import proyekmagang.restfullapi.entity.Product;
 import proyekmagang.restfullapi.entity.Transaction;
 import proyekmagang.restfullapi.entity.User;
@@ -15,6 +17,7 @@ import proyekmagang.restfullapi.repository.UserRepository;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class TransactionService {
 
     @Autowired
@@ -57,6 +60,26 @@ public class TransactionService {
 //        public Transaction findById(Long id) {
 //
 //    }
+
+
+
+//    untuk upload excel
+    public void saveTransactionsToDatabase(MultipartFile file){
+        if (ExcelUploadService.isValidExcelFile(file)){
+            try {
+                List<Customer> customers = ExcelUploadService.getCustomersDataFromExcel(file.getInputStream());
+                this.customerRepository.saveAll(customers);
+            } catch (IOException e) {
+                throw new IllegalArgumentException("The file is not a valid excel file");
+            }
+        }
+    }
+
+    public List<Customer> getCustomers(){
+        return customerRepository.findAll();
+    }
+
+
 
 }
 

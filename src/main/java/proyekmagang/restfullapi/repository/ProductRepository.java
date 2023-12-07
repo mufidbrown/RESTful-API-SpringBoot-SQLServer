@@ -7,4 +7,5 @@ import proyekmagang.restfullapi.entity.User;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+
 }

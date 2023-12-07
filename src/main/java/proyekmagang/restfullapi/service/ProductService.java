@@ -2,18 +2,22 @@ package proyekmagang.restfullapi.service;
 
 import org.springframework.stereotype.Service;
 import proyekmagang.restfullapi.entity.Product;
+import proyekmagang.restfullapi.exception.ResourceNotFoundException;
 import proyekmagang.restfullapi.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ProductService {
+public class ProductService{
+
     private final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
+
 
     public List<Product> allProducts() {
         List<Product> products = new ArrayList<>();
@@ -43,6 +47,8 @@ public class ProductService {
     public void deleteProduct(Integer id) {
         productRepository.deleteById(id);
     }
+
+
 
 
 //    public Product createProduct(Product product) {

@@ -76,7 +76,7 @@ public class TransactionService {
         }
     }
 
-    public List<Product> getCustomers(){
+    public List<Product> getProducts(){
         return productRepository.findAll();
     }
     //    end upload excel

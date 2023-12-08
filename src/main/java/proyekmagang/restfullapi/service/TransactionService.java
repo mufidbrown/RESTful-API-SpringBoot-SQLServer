@@ -14,6 +14,7 @@ import proyekmagang.restfullapi.repository.ProductRepository;
 import proyekmagang.restfullapi.repository.TransactionRepository;
 import proyekmagang.restfullapi.repository.UserRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -67,17 +68,19 @@ public class TransactionService {
     public void saveTransactionsToDatabase(MultipartFile file){
         if (ExcelUploadService.isValidExcelFile(file)){
             try {
-                List<Customer> customers = ExcelUploadService.getCustomersDataFromExcel(file.getInputStream());
-                this.customerRepository.saveAll(customers);
+                List<Product> products = ExcelUploadService.getProductsDataFromExcel(file.getInputStream());
+                this.productRepository.saveAll(products);
             } catch (IOException e) {
                 throw new IllegalArgumentException("The file is not a valid excel file");
             }
         }
     }
 
-    public List<Customer> getCustomers(){
-        return customerRepository.findAll();
+    public List<Product> getCustomers(){
+        return productRepository.findAll();
     }
+    //    end upload excel
+
 
 
 

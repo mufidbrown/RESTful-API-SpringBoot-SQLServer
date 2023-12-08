@@ -1,10 +1,12 @@
 package proyekmagang.restfullapi.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import proyekmagang.restfullapi.entity.Product;
 import proyekmagang.restfullapi.exception.ResourceNotFoundException;
 import proyekmagang.restfullapi.repository.ProductRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -60,6 +62,28 @@ public class ProductService{
 //        productRepository.save(product);
 //        return product;
 //    }
+
+
+
+
+
+
+    //    untuk upload excel
+    public void saveProductsToDatabase(MultipartFile file){
+        if (ExcelUploadService.isValidExcelFile(file)){
+            try {
+                List<Product> products = ExcelUploadService.getProductsDataFromExcel(file.getInputStream());
+                this.productRepository.saveAll(products);
+            } catch (IOException e) {
+                throw new IllegalArgumentException("The file is not a valid excel file");
+            }
+        }
+    }
+
+    public List<Product> getProducts(){
+        return productRepository.findAll();
+    }
+    //    end upload excel
 }
 
 

@@ -3,10 +3,12 @@ package proyekmagang.restfullapi.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import proyekmagang.restfullapi.entity.Product;
 import proyekmagang.restfullapi.service.ProductService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/products")
@@ -57,5 +59,23 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.ok().build();
     }
+
+
+    //untuk import excel
+
+    @PostMapping("/upload-customers-data")
+    public ResponseEntity<?> uploadCustomersData(@RequestParam("file") MultipartFile file){
+        this.productService.saveProductsToDatabase(file);
+        return ResponseEntity
+                .ok(Map.of("Message", "Customers data uploaded and save to database successfully"));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Product>> getProducts(){
+        return new ResponseEntity<>(productService.getProducts(), HttpStatus.FOUND);
+    }
+
+    //end import excel
+
 }
 

@@ -63,27 +63,6 @@ public class ProductService{
 //        return product;
 //    }
 
-
-
-
-
-
-    //    untuk upload excel
-    public void saveProductsToDatabase(MultipartFile file){
-        if (ExcelUploadService.isValidExcelFile(file)){
-            try {
-                List<Product> products = ExcelUploadService.getProductsDataFromExcel(file.getInputStream());
-                this.productRepository.saveAll(products);
-            } catch (IOException e) {
-                throw new IllegalArgumentException("The file is not a valid excel file");
-            }
-        }
-    }
-
-    public List<Product> getProducts(){
-        return productRepository.findAll();
-    }
-    //    end upload excel
 }
 
 

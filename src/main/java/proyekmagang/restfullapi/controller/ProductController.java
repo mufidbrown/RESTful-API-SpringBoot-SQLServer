@@ -61,21 +61,7 @@ public class ProductController {
     }
 
 
-    //untuk import excel
 
-    @PostMapping("/upload-customers-data")
-    public ResponseEntity<?> uploadCustomersData(@RequestParam("file") MultipartFile file){
-        this.productService.saveProductsToDatabase(file);
-        return ResponseEntity
-                .ok(Map.of("Message", "Customers data uploaded and save to database successfully"));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Product>> getProducts(){
-        return new ResponseEntity<>(productService.getProducts(), HttpStatus.FOUND);
-    }
-
-    //end import excel
 
 }
 
